@@ -7,14 +7,12 @@ import (
 	"encoding/json"
 	"math/rand"
 	"net/http"
+	"github.com/Neal-C/Go-Docker-Microservice-gRPC/types"
 )
 
 type APIFunc func(context.Context, http.ResponseWriter, *http.Request) error
 
-type PriceResponse struct {
-	Ticker string `json:"ticker"`
-	Price float64 `json:"price"`
-}
+
 
 type JSONAPIServer struct {
 	listenAddr string
@@ -58,7 +56,7 @@ func (self *JSONAPIServer) handleFetchPrice(ctx context.Context, responseWriter 
 		return err;
 	}
 
-	priceResponse := PriceResponse{
+	priceResponse := types.PriceResponse{
 		Price: price,
 		Ticker: ticker,
 	};
